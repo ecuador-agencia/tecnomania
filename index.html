@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TECNOMANIA - Tu Tienda de Tecnología</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0f;
+  --bg2:#111118;
+  --bg3:#1a1a25;
+  --accent:#00e5ff;
+  --accent2:#7c3aed;
+  --text:#f0f0ff;
+  --muted:#8888aa;
+  --card:#16161f;
+  --border:#2a2a3a;
+}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,10,15,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;height:64px;
+}
+.logo{font-family:'Rajdhani',sans-serif;font-size:1.6rem;font-weight:700;letter-spacing:2px}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:0.9rem;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{
+  background:var(--accent);color:#000;
+  font-weight:500;font-size:0.85rem;
+  padding:8px 18px;border-radius:6px;
+  transition:opacity .2s;
+}
+.nav-cta:hover{opacity:0.85}
+
+/* HERO */
+.hero{
+  min-height:90vh;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;
+  padding:4rem 2rem;
+  position:relative;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,229,255,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 80% 80%, rgba(124,58,237,0.1) 0%, transparent 60%);
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:60px 60px;
+  opacity:0.3;
+}
+.hero-content{position:relative;z-index:1;max-width:780px}
+.hero-badge{
+  display:inline-block;
+  border:1px solid var(--accent);
+  color:var(--accent);
+  font-size:0.75rem;letter-spacing:3px;
+  padding:6px 16px;border-radius:40px;
+  margin-bottom:1.5rem;
+}
+.hero h1{
+  font-family:'Rajdhani',sans-serif;
+  font-size:clamp(3rem,8vw,5.5rem);
+  font-weight:700;line-height:1;
+  letter-spacing:-1px;
+  margin-bottom:1.5rem;
+}
+.hero h1 span{color:var(--accent)}
+.hero p{
+  font-size:1.15rem;color:var(--muted);
+  max-width:500px;margin:0 auto 2.5rem;
+  line-height:1.7;
+}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{
+  background:var(--accent);color:#000;
+  font-weight:500;padding:14px 28px;
+  border-radius:8px;font-size:0.95rem;
+  transition:transform .2s,opacity .2s;
+  cursor:pointer;border:none;
+}
+.btn-primary:hover{transform:translateY(-2px);opacity:0.9}
+.btn-outline{
+  border:1px solid var(--border);color:var(--text);
+  padding:14px 28px;border-radius:8px;
+  font-size:0.95rem;background:transparent;
+  transition:border-color .2s,background .2s;
+  cursor:pointer;
+}
+.btn-outline:hover{border-color:var(--accent);background:rgba(0,229,255,0.05)}
+.hero-stats{
+  display:flex;gap:3rem;justify-content:center;
+  margin-top:4rem;padding-top:3rem;
+  border-top:1px solid var(--border);
+  flex-wrap:wrap;
+}
+.stat-num{font-family:'Rajdhani',sans-serif;font-size:2.2rem;font-weight:700;color:var(--accent)}
+.stat-label{font-size:0.85rem;color:var(--muted);margin-top:2px}
+
+/* SECCIONES */
+section{padding:5rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.section-tag{
+  font-size:0.75rem;letter-spacing:3px;color:var(--accent);
+  text-transform:uppercase;margin-bottom:0.75rem;
+}
+.section-title{
+  font-family:'Rajdhani',sans-serif;
+  font-size:clamp(2rem,5vw,3rem);
+  font-weight:700;margin-bottom:1rem;
+}
+.section-desc{color:var(--muted);font-size:1rem;line-height:1.7;max-width:520px}
+
+/* PRODUCTOS */
+.productos-bg{background:var(--bg2)}
+.prod-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:1rem;margin-top:3rem;
+}
+.prod-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;padding:1.75rem 1.5rem;
+  transition:border-color .3s,transform .3s;
+  cursor:default;
+}
+.prod-card:hover{border-color:var(--accent);transform:translateY(-4px)}
+.prod-icon{font-size:2rem;margin-bottom:1rem}
+.prod-name{font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:600;margin-bottom:0.4rem}
+.prod-desc{font-size:0.85rem;color:var(--muted);line-height:1.5}
+.prod-tag{
+  display:inline-block;margin-top:1rem;
+  background:rgba(0,229,255,0.1);
+  color:var(--accent);font-size:0.75rem;
+  padding:3px 10px;border-radius:20px;
+}
+
+/* SUCURSALES */
+.suc-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:2rem;margin-bottom:3rem}
+.suc-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:1.5rem;
+}
+.suc-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;overflow:hidden;
+  transition:border-color .3s;
+}
+.suc-card:hover{border-color:var(--accent2)}
+.suc-header-card{
+  padding:1.25rem 1.5rem;
+  display:flex;align-items:center;gap:1rem;
+  border-bottom:1px solid var(--border);
+}
+.suc-num{
+  width:40px;height:40px;border-radius:8px;
+  background:rgba(124,58,237,0.2);
+  border:1px solid rgba(124,58,237,0.4);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Rajdhani',sans-serif;font-size:1.2rem;font-weight:700;
+  color:#a78bfa;flex-shrink:0;
+}
+.suc-name{font-family:'Rajdhani',sans-serif;font-size:1.2rem;font-weight:600}
+.suc-body{padding:1.25rem 1.5rem}
+.suc-info{display:flex;flex-direction:column;gap:0.75rem}
+.suc-row{display:flex;align-items:flex-start;gap:0.75rem;font-size:0.9rem}
+.suc-ico{font-size:1rem;flex-shrink:0;margin-top:2px}
+.suc-text{color:var(--muted);line-height:1.5}
+.suc-badge{
+  display:inline-block;margin-top:1.25rem;
+  background:rgba(0,229,255,0.08);
+  border:1px solid rgba(0,229,255,0.25);
+  color:var(--accent);font-size:0.78rem;
+  padding:5px 12px;border-radius:20px;
+}
+
+/* MARCAS */
+.marcas-bg{background:var(--bg2)}
+.marcas-grid{
+  display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;
+  margin-top:2.5rem;
+}
+.marca-pill{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:40px;
+  padding:10px 22px;
+  font-size:0.9rem;font-weight:500;
+  transition:border-color .2s,color .2s;
+}
+.marca-pill:hover{border-color:var(--accent);color:var(--accent)}
+
+/* SERVICIOS */
+.serv-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1rem;margin-top:3rem;
+}
+.serv-card{
+  border:1px solid var(--border);
+  border-radius:12px;padding:1.5rem;
+  background:var(--card);
+  transition:border-color .2s;
+}
+.serv-card:hover{border-color:var(--accent2)}
+.serv-icon{font-size:1.6rem;margin-bottom:0.75rem}
+.serv-title{font-family:'Rajdhani',sans-serif;font-size:1.05rem;font-weight:600;margin-bottom:0.4rem}
+.serv-desc{font-size:0.85rem;color:var(--muted);line-height:1.5}
+
+/* CTA */
+.cta-sec{
+  text-align:center;
+  background:linear-gradient(135deg, rgba(0,229,255,0.08) 0%, rgba(124,58,237,0.08) 100%);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.cta-sec h2{font-family:'Rajdhani',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:700;margin-bottom:1rem}
+.cta-sec p{color:var(--muted);margin-bottom:2rem;font-size:1rem}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* FOOTER */
+footer{
+  background:var(--bg);
+  border-top:1px solid var(--border);
+  padding:3rem 2rem;
+}
+.footer-inner{
+  max-width:1100px;margin:0 auto;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:2rem;
+}
+.footer-logo{font-family:'Rajdhani',sans-serif;font-size:1.4rem;font-weight:700}
+.footer-logo span{color:var(--accent)}
+.footer-links{display:flex;gap:2rem;list-style:none}
+.footer-links a{font-size:0.85rem;color:var(--muted);transition:color .2s}
+.footer-links a:hover{color:var(--accent)}
+.footer-copy{font-size:0.8rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">TECNO<span>MANIA</span></div>
+  <ul class="nav-links">
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#sucursales">Sucursales</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#marcas">Marcas</a></li>
+  </ul>
+  <a class="nav-cta" href="#sucursales">Visítanos</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">&#128241; TU TIENDA DE TECNOLOGÍA</div>
+    <h1>TECNO<span>MANIA</span></h1>
+    <p>Los mejores celulares, accesorios y servicio técnico. Tres sucursales para atenderte donde estés.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('productos').scrollIntoView({behavior:'smooth'})">Ver productos</button>
+      <button class="btn-outline" onclick="document.getElementById('sucursales').scrollIntoView({behavior:'smooth'})">Nuestras sucursales</button>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">3</div><div class="stat-label">Sucursales</div></div>
+      <div><div class="stat-num">500+</div><div class="stat-label">Productos</div></div>
+      <div><div class="stat-num">10k+</div><div class="stat-label">Clientes felices</div></div>
+      <div><div class="stat-num">5★</div><div class="stat-label">Calificación</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section id="productos" class="productos-bg">
+  <div class="container">
+    <div class="section-tag">Catálogo</div>
+    <h2 class="section-title">Lo que encontrarás</h2>
+    <p class="section-desc">Contamos con todo lo que necesitas en tecnología móvil, al mejor precio y con garantía.</p>
+    <div class="prod-grid">
+      <div class="prod-card">
+        <div class="prod-icon">📱</div>
+        <div class="prod-name">Smartphones</div>
+        <div class="prod-desc">Gama alta, media y económica. iPhone, Samsung, Xiaomi y más.</div>
+        <span class="prod-tag">Más vendido</span>
+      </div>
+      <div class="prod-card">
+        <div class="prod-icon">🎧</div>
+        <div class="prod-name">Audífonos</div>
+        <div class="prod-desc">Bluetooth, con cable, true wireless y gaming.</div>
+        <span class="prod-tag">Nuevos</span>
+      </div>
+      <div class="prod-card">
+        <div class="prod-icon">🔋</div>
+        <div class="prod-name">Cargadores</div>
+        <div class="prod-desc">Carga rápida, inalámbrica y portátil para todos los modelos.</div>
+        <span class="prod-tag">Oferta</span>
+      </div>
+      <div class="prod-card">
+        <div class="prod-icon">🛡️</div>
+        <div class="prod-name">Fundas y Vidrios</div>
+        <div class="prod-desc">Protección premium para tu celular favorito.</div>
+        <span class="prod-tag">Popular</span>
+      </div>
+      <div class="prod-card">
+        <div class="prod-icon">⌚</div>
+        <div class="prod-name">Smartwatches</div>
+        <div class="prod-desc">Relojes inteligentes de las mejores marcas del mercado.</div>
+        <span class="prod-tag">Nuevo</span>
+      </div>
+      <div class="prod-card">
+        <div class="prod-icon">💻</div>
+        <div class="prod-name">Tablets</div>
+        <div class="prod-desc">Para trabajo, estudio y entretenimiento.</div>
+        <span class="prod-tag">Stock</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUCURSALES -->
+<section id="sucursales">
+  <div class="container">
+    <div class="suc-header">
+      <div>
+        <div class="section-tag">Ubicaciones</div>
+        <h2 class="section-title">Nuestras sucursales</h2>
+        <p class="section-desc">Tres locales para que siempre tengas TECNOMANIA cerca de ti.</p>
+      </div>
+    </div>
+    <div class="suc-grid">
+      <div class="suc-card">
+        <div class="suc-header-card">
+          <div class="suc-num">01</div>
+          <div>
+            <div class="suc-name">Sucursal Centro</div>
+            <div style="font-size:0.8rem;color:var(--muted)">Sucursal principal</div>
+          </div>
+        </div>
+        <div class="suc-body">
+          <div class="suc-info">
+            <div class="suc-row"><span class="suc-ico">📍</span><span class="suc-text">Calle Principal 123, Centro Comercial Plaza Mayor, Local 5</span></div>
+            <div class="suc-row"><span class="suc-ico">📞</span><span class="suc-text">+593 99 123 4567</span></div>
+            <div class="suc-row"><span class="suc-ico">🕐</span><span class="suc-text">Lun – Sáb: 9:00 – 19:00 | Dom: 10:00 – 16:00</span></div>
+          </div>
+          <span class="suc-badge">Servicio técnico disponible</span>
+        </div>
+      </div>
+      <div class="suc-card">
+        <div class="suc-header-card">
+          <div class="suc-num">02</div>
+          <div>
+            <div class="suc-name">Sucursal Norte</div>
+            <div style="font-size:0.8rem;color:var(--muted)">Zona norte</div>
+          </div>
+        </div>
+        <div class="suc-body">
+          <div class="suc-info">
+            <div class="suc-row"><span class="suc-ico">📍</span><span class="suc-text">Av. Universitaria 456, junto al Centro Comercial del Norte</span></div>
+            <div class="suc-row"><span class="suc-ico">📞</span><span class="suc-text">+593 99 234 5678</span></div>
+            <div class="suc-row"><span class="suc-ico">🕐</span><span class="suc-text">Lun – Sáb: 9:00 – 19:00 | Dom: 10:00 – 15:00</span></div>
+          </div>
+          <span class="suc-badge">Financiamiento disponible</span>
+        </div>
+      </div>
+      <div class="suc-card">
+        <div class="suc-header-card">
+          <div class="suc-num">03</div>
+          <div>
+            <div class="suc-name">Sucursal Sur</div>
+            <div style="font-size:0.8rem;color:var(--muted)">Zona sur</div>
+          </div>
+        </div>
+        <div class="suc-body">
+          <div class="suc-info">
+            <div class="suc-row"><span class="suc-ico">📍</span><span class="suc-text">Av. Panamericana Sur 789, frente al parque central</span></div>
+            <div class="suc-row"><span class="suc-ico">📞</span><span class="suc-text">+593 99 345 6789</span></div>
+            <div class="suc-row"><span class="suc-ico">🕐</span><span class="suc-text">Lun – Sáb: 9:00 – 18:30 | Dom: Cerrado</span></div>
+          </div>
+          <span class="suc-badge">Showroom completo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="marcas-bg">
+  <div class="container">
+    <div class="section-tag">Lo que hacemos</div>
+    <h2 class="section-title">Servicios técnicos</h2>
+    <p class="section-desc">No solo vendemos tecnología, también la reparamos y mantenemos.</p>
+    <div class="serv-grid">
+      <div class="serv-card">
+        <div class="serv-icon">🔧</div>
+        <div class="serv-title">Reparación de pantallas</div>
+        <div class="serv-desc">Cambio de pantallas rotas en el mismo día para las marcas más comunes.</div>
+      </div>
+      <div class="serv-card">
+        <div class="serv-icon">🔋</div>
+        <div class="serv-title">Cambio de batería</div>
+        <div class="serv-desc">Reemplazamos tu batería original con repuestos de calidad garantizada.</div>
+      </div>
+      <div class="serv-card">
+        <div class="serv-icon">💧</div>
+        <div class="serv-title">Daño por agua</div>
+        <div class="serv-desc">Recuperamos dispositivos con daños por líquidos con diagnóstico gratuito.</div>
+      </div>
+      <div class="serv-card">
+        <div class="serv-icon">🔓</div>
+        <div class="serv-title">Desbloqueo</div>
+        <div class="serv-desc">Desbloqueo de operadora y liberación oficial de equipos.</div>
+      </div>
+      <div class="serv-card">
+        <div class="serv-icon">📲</div>
+        <div class="serv-title">Respaldo y transferencia</div>
+        <div class="serv-desc">Respaldamos tus datos y los transferimos a tu nuevo equipo.</div>
+      </div>
+      <div class="serv-card">
+        <div class="serv-icon">🛡️</div>
+        <div class="serv-title">Garantía extendida</div>
+        <div class="serv-desc">Plan de cobertura para tu dispositivo hasta por 12 meses adicionales.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARCAS -->
+<section id="marcas">
+  <div class="container" style="text-align:center">
+    <div class="section-tag">Distribuidores autorizados</div>
+    <h2 class="section-title">Marcas que manejamos</h2>
+    <div class="marcas-grid">
+      <div class="marca-pill">Apple</div>
+      <div class="marca-pill">Samsung</div>
+      <div class="marca-pill">Xiaomi</div>
+      <div class="marca-pill">Motorola</div>
+      <div class="marca-pill">Huawei</div>
+      <div class="marca-pill">Oppo</div>
+      <div class="marca-pill">Realme</div>
+      <div class="marca-pill">Honor</div>
+      <div class="marca-pill">Sony</div>
+      <div class="marca-pill">Nokia</div>
+      <div class="marca-pill">TCL</div>
+      <div class="marca-pill">Vivo</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="container">
+    <h2>¿Listo para encontrar tu próximo celular?</h2>
+    <p>Visítanos en cualquiera de nuestras 3 sucursales o escríbenos por WhatsApp.</p>
+    <div class="cta-btns">
+      <a class="btn-primary" href="https://wa.me/593995431707" style="display:inline-block">💬 WhatsApp</a>
+      <button class="btn-outline" onclick="document.getElementById('sucursales').scrollIntoView({behavior:'smooth'})">Ver sucursales</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">TECNO<span>MANIA</span></div>
+      <div style="font-size:0.8rem;color:var(--muted);margin-top:0.4rem">Tu experto en tecnología móvil</div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#sucursales">Sucursales</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 AGENCIA DIGITAL. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+</body>
+</html>
